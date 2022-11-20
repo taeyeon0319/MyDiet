@@ -34,6 +34,8 @@
 
         <!-- DetailActivity -->
         <activity android:name=".DetailActivity"/>
+
+        <!--테스트-->
     </application>
 
 </manifest>
