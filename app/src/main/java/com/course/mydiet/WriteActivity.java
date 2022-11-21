@@ -35,7 +35,7 @@ public class WriteActivity extends AppCompatActivity {
         write.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(getApplicationContext(), DietActivity.class);
+                Intent intent = new Intent(getApplicationContext(), inputActivity.class);
                 startActivity(intent);
             }
         });
