@@ -97,7 +97,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/time"
+        android:id="@+id/time2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -112,7 +112,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
         android:text="시간:"
-        app:layout_constraintBaseline_toBaselineOf="@+id/time"
+        app:layout_constraintBaseline_toBaselineOf="@+id/time2"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button

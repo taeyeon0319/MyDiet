@@ -39,7 +39,7 @@ public class inputActivity extends AppCompatActivity {
         input =(EditText)findViewById(R.id.input);      // 수량 입력받음
         input1 =(EditText)findViewById(R.id.input1);    //음식이름 입력받음
         input2 =(EditText)findViewById(R.id.input2);    //소감 입력받음
-        input3 =(EditText)findViewById(R.id.time);      // 시간 입력받음
+        input3 =(EditText)findViewById(R.id.time2);      // 시간 입력받음
 
 
             //TextView

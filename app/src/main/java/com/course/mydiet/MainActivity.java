@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     public CalendarView calendarView;
     public TextView yymmdd,calendartitle, calorie;
     public Button detail_btn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -14,6 +15,7 @@ public class DietActivity extends AppCompatActivity{
     public Button btc;
     public Button plus;
     public ConstraintLayout example;
+    public TextView textView2;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -22,6 +24,7 @@ public class DietActivity extends AppCompatActivity{
         setContentView(R.layout.activity_diet);
         btc = findViewById(R.id.backtocalendar);
         plus = findViewById(R.id.add);
+        textView2 = findViewById(R.id.textView2);
         //이건 예시임
         example = findViewById(R.id.example);
 
