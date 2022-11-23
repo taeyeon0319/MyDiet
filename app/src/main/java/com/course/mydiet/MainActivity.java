@@ -28,19 +28,22 @@ public class MainActivity extends AppCompatActivity {
 
         //날짜 선택
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                detail_btn.setVisibility(View.VISIBLE);
+                detail_btn.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        Intent intent = new Intent(getApplicationContext(), DietActivity.class);
+                        intent.putExtra("year", year);
+                        intent.putExtra("month", month+1);
+                        intent.putExtra("day", dayOfMonth);
+                        startActivity(intent);
+                    }
+                });
                 yymmdd.setVisibility(View.VISIBLE);
                 yymmdd.setText(String.format("%d / %d / %d",year,month+1,dayOfMonth));
-            }
-        });
-
-        //자세히보기 버튼 누름
-        detail_btn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(getApplicationContext(), DietActivity.class);
-                startActivity(intent);
             }
         });
     }
