@@ -30,10 +30,14 @@
         <activity android:name=".DietActivity"/>
 
         <!-- WriteActivity -->
-        <activity android:name=".WriteActivity"/>
+        <activity android:name=".WriteActivity"
+            android:windowSoftInputMode="adjustPan"/>
 
         <!-- DetailActivity -->
         <activity android:name=".DetailActivity"/>
+
+        <!-- inputActivity -->
+        <activity android:name=".inputActivity"/>
 
         <!--테스트-->
     </application>

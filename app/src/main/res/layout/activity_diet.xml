@@ -12,7 +12,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="28dp"
-        android:text="식단기록"
+        android:text="년/월/일 식단기록"
         app:layout_constraintBottom_toTopOf="@+id/example"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

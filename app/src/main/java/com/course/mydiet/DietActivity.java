@@ -18,7 +18,6 @@ public class DietActivity extends AppCompatActivity{
     public TextView textView2;
 
     public int year, month, day;
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
