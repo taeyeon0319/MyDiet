@@ -1,14 +1,20 @@
 package com.course.mydiet.db;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.course.mydiet.DetailActivity;
+import com.course.mydiet.DietActivity;
+import com.course.mydiet.MainActivity;
 import com.course.mydiet.R;
 
 import org.w3c.dom.Text;
@@ -41,6 +47,20 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
         holder.title.setText(item.title);
         holder.time.setText(item.time);
         holder.review.setText(item.review);
+
+        holder.card_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int mPostion = holder.getAdapterPosition();
+                Context context = view.getContext();
+                Intent detailActivity = new Intent(context, DetailActivity.class);
+                detailActivity.putExtra("date", dietList.get(mPostion).date);
+                detailActivity.putExtra("title", dietList.get(mPostion).title);
+                detailActivity.putExtra("time", dietList.get(mPostion).time);
+                detailActivity.putExtra("review", dietList.get(mPostion).review);
+                (context).startActivity(detailActivity);
+            }
+        });
     }
 
     @Override
@@ -49,6 +69,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout card_view;
         TextView title;
         TextView time;
         TextView review;
@@ -58,6 +79,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
             title = itemView.findViewById(R.id.itemTitle);
             time = itemView.findViewById(R.id.itemTime);
             review = itemView.findViewById(R.id.itemReview);
+            card_view = itemView.findViewById(R.id.linearlayout);
         }
     }
 }

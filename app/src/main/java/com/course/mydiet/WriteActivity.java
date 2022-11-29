@@ -45,7 +45,7 @@ public class WriteActivity extends AppCompatActivity {
 
         back = findViewById(R.id.back);
         write = findViewById(R.id.write);
-        time_picker = findViewById(R.id.timePicker);
+        time_picker = findViewById(R.id.foodimage);
         diettitle = findViewById(R.id.diet_title);
         foodadd = findViewById(R.id.foodadd);
         foodadd2 = findViewById(R.id.foodadd2);

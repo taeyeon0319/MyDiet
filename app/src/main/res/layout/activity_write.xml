@@ -12,8 +12,9 @@
         android:layout_weight="1"
         android:ems="10"
         android:hint="소감을 입력해주세요!"
-        android:privateImeOptions="defaultInput-mode=korean"
+
         android:inputType="textPersonName"
+        android:privateImeOptions="defaultInput-mode=korean"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.882"
@@ -163,7 +164,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TimePicker
-        android:id="@+id/timePicker"
+        android:id="@+id/foodimage"
         android:layout_width="412dp"
         android:layout_height="170dp"
         android:layout_marginStart="54dp"

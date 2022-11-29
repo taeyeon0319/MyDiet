@@ -20,7 +20,6 @@ import java.util.List;
 public class DietActivity extends AppCompatActivity{
 
     public Button btc;
-    //public Button plus;
     public TextView textView2;
 
     private List<Diet> dietList;
@@ -38,7 +37,6 @@ public class DietActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diet);
         btc = findViewById(R.id.backtocalendar);
-        //plus = findViewById(R.id.add);
         textView2 = findViewById(R.id.ymd);
         mRecyclerView = (RecyclerView) findViewById(R.id.mRecyclerView);
 
@@ -88,8 +86,8 @@ public class DietActivity extends AppCompatActivity{
             }
         });
 
-        //+ 버튼 누름
-        /*plus.setOnClickListener(new View.OnClickListener(){
+        /*+ 버튼 누름
+        addbutton2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), WriteActivity.class);
