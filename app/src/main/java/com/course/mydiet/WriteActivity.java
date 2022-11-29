@@ -31,10 +31,11 @@ public class WriteActivity extends AppCompatActivity {
     public Button back, write, addbutton;
     public TimePicker time_picker;
     public TextView time;
-    public EditText diettitle, foodadd, foodadd2;
+    public EditText diettitle, foodadd, foodadd2, dietreview;
     public ListView foodlist, foodlist2;
 
     public int year, month, day;
+    public String timeread;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -51,6 +52,7 @@ public class WriteActivity extends AppCompatActivity {
         foodlist = findViewById(R.id.food_list);
         foodlist2 = findViewById(R.id.food_list2);
         addbutton = findViewById(R.id.addbutton);
+        dietreview = findViewById(R.id.dietreview);
 
         //DB 생성
         dietDB = DietDB.getInstance(this);
@@ -64,6 +66,19 @@ public class WriteActivity extends AppCompatActivity {
             day= intent.getIntExtra("day", 1);
         }
 
+        // TimePicker 클릭 시 출력
+        time_picker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker timePicker, int hour, int minute) {
+                if(hour>12){
+                    hour-=12;
+                    timeread = String.format("오후 %d시 %d분",hour, minute);
+                }else{
+                    timeread = String.format("오전 %d시 %d분",hour, minute);
+                }
+            }
+        });
+
         // DB INSERT
         class InsertRunnable implements Runnable{
             @Override
@@ -71,6 +86,8 @@ public class WriteActivity extends AppCompatActivity {
                 Diet diet = new Diet();
                 diet.date = String.format("%d.%d.%d.",year, month, day);
                 diet.title = diettitle.getText().toString();
+                diet.time = timeread;
+                diet.review = dietreview.getText().toString();
                 DietDB.getInstance(dContext).dietDao().insertAll(diet);
             }
         }
@@ -83,6 +100,7 @@ public class WriteActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         //작성 버튼 ==> 새로운 내용 추가
         write.setOnClickListener(new View.OnClickListener(){

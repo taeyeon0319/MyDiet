@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.course.mydiet.R;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
@@ -37,6 +39,8 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Diet item = dietList.get(position);
         holder.title.setText(item.title);
+        holder.time.setText(item.time);
+        holder.review.setText(item.review);
     }
 
     @Override
@@ -46,10 +50,14 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
+        TextView time;
+        TextView review;
 
         ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.itemTitle);
+            time = itemView.findViewById(R.id.itemTime);
+            review = itemView.findViewById(R.id.itemReview);
         }
     }
 }
