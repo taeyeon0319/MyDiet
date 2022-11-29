@@ -19,16 +19,22 @@ import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.course.mydiet.db.Diet;
+import com.course.mydiet.db.DietDB;
+
 import java.util.ArrayList;
 
 public class WriteActivity extends AppCompatActivity {
+    private DietDB dietDB = null;
+    private Context dContext;
 
     public Button back, write, addbutton;
     public TimePicker time_picker;
     public TextView time;
-    public EditText foodadd, foodadd2;
+    public EditText diettitle, foodadd, foodadd2;
     public ListView foodlist, foodlist2;
 
+    public int year, month, day;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -39,17 +45,41 @@ public class WriteActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         write = findViewById(R.id.write);
         time_picker = findViewById(R.id.timePicker);
+        diettitle = findViewById(R.id.diet_title);
         foodadd = findViewById(R.id.foodadd);
         foodadd2 = findViewById(R.id.foodadd2);
         foodlist = findViewById(R.id.food_list);
         foodlist2 = findViewById(R.id.food_list2);
         addbutton = findViewById(R.id.addbutton);
 
+        //DB 생성
+        dietDB = DietDB.getInstance(this);
+        dContext = getApplicationContext();
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            // You can check for null to make sure
+            year = intent.getIntExtra("year", 2017);
+            month = intent.getIntExtra("month", 1);
+            day= intent.getIntExtra("day", 1);
+        }
+
+        // DB INSERT
+        class InsertRunnable implements Runnable{
+            @Override
+            public void run(){
+                Diet diet = new Diet();
+                diet.date = String.format("%d.%d.%d.",year, month, day);
+                diet.title = diettitle.getText().toString();
+                DietDB.getInstance(dContext).dietDao().insertAll(diet);
+            }
+        }
+
         //뒤로 버튼 ==> 추가 없이
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(getApplicationContext(), DietActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -58,7 +88,15 @@ public class WriteActivity extends AppCompatActivity {
         write.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                InsertRunnable insertRunnable = new InsertRunnable();
+                Thread addThread = new Thread(insertRunnable);
+                addThread.start();
+
                 Intent intent = new Intent(getApplicationContext(), DietActivity.class);
+                intent.putExtra("year", year);
+                intent.putExtra("month", month);
+                intent.putExtra("day", day);
+                startActivity(intent);
                 startActivity(intent);
             }
         });
