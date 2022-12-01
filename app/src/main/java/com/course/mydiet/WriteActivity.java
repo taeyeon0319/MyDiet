@@ -19,13 +19,16 @@ import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.course.mydiet.db.Diet;
-import com.course.mydiet.db.DietDB;
+import com.course.mydiet.dietdb.Diet;
+import com.course.mydiet.dietdb.DietDB;
+import com.course.mydiet.fooddb.Food;
+import com.course.mydiet.fooddb.FoodDB;
 
 import java.util.ArrayList;
 
 public class WriteActivity extends AppCompatActivity {
     private DietDB dietDB = null;
+    private FoodDB foodDB = null;
     private Context dContext;
 
     public Button back, write, addbutton;
@@ -36,6 +39,9 @@ public class WriteActivity extends AppCompatActivity {
 
     public int year, month, day;
     public String timeread;
+
+    public String f, n;
+    public String t;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -56,8 +62,10 @@ public class WriteActivity extends AppCompatActivity {
 
         //DB 생성
         dietDB = DietDB.getInstance(this);
+        foodDB = FoodDB.getInstance(this);
         dContext = getApplicationContext();
 
+        //날짜 값 전달 받음
         Intent intent = getIntent();
         if (intent != null) {
             // You can check for null to make sure
@@ -128,22 +136,45 @@ public class WriteActivity extends AppCompatActivity {
 
         foodlist.setAdapter(arrayAdapter);
         foodlist2.setAdapter(arrayAdapter2);
+
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //음식 이름
                 if(foodadd.getText().toString().length()>0) { // 한글자 이상 입력 된다면 추가
                     String inputStr = foodadd.getText().toString();
+                    f = foodadd.getText().toString();
                     arrayList.add(inputStr);
                     arrayAdapter.notifyDataSetChanged(); //변경 이후 arrayAdapter에게 변경되었음을 알림 (새로고침)
                     foodadd.setText(null);
                 }
-
+                //음식 수량
                 if(foodadd2.getText().toString().length()>0) {
                     String inputStr2 = foodadd2.getText().toString();
+                    n = foodadd2.getText().toString();
                     arrayList2.add(inputStr2);
                     arrayAdapter2.notifyDataSetChanged();
                     foodadd2.setText(null);
                 }
+
+                class InsertFoodRunnable implements Runnable{
+                    @Override
+                    public void run(){
+                        Food food = new Food();
+                        food.foodname = f;
+                        try{
+                            food.amount = Integer.parseInt(n);
+                        } catch (NumberFormatException e){
+                        } catch (Exception e){
+                        }
+
+                        food.connectdiet = String.format("%d.%d.%d.-%s",year, month, day, diettitle.getText().toString());
+                        FoodDB.getInstance(dContext).foodDao().insertAll(food);
+                    }
+                }
+                InsertFoodRunnable insertfoodRunnable = new InsertFoodRunnable();
+                Thread add2Thread = new Thread(insertfoodRunnable);
+                add2Thread.start();
             }
         });
     }

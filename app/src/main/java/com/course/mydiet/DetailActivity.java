@@ -9,12 +9,17 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.course.mydiet.db.Diet;
-import com.course.mydiet.db.DietDB;
+import com.course.mydiet.dietdb.Diet;
+import com.course.mydiet.dietdb.DietAdapter;
+import com.course.mydiet.dietdb.DietDB;
+import com.course.mydiet.fooddb.Food;
+import com.course.mydiet.fooddb.FoodAdapter;
+import com.course.mydiet.fooddb.FoodDB;
 
-import org.w3c.dom.Text;
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     public Button back;
@@ -22,6 +27,12 @@ public class DetailActivity extends AppCompatActivity {
     public String date, title, time, review;
     public TextView detailtitle, detailtime, detailreview;
     private Context dContext;
+
+    private List<Food> foodList;
+    private FoodDB foodDB = null;
+    private Context mContext = null;
+    private FoodAdapter foodAdapter;
+    private RecyclerView fRecyclerView;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -37,6 +48,9 @@ public class DetailActivity extends AppCompatActivity {
 
         dContext = getApplicationContext();
 
+        fRecyclerView = (RecyclerView) findViewById(R.id.fRecyclerView);
+        mContext = getApplicationContext();
+        foodAdapter = new FoodAdapter(foodList);
 
         Intent detailActivity = getIntent();
 
@@ -53,6 +67,28 @@ public class DetailActivity extends AppCompatActivity {
         detailtitle.setText(title);
         detailtime.setText(time);
         detailreview.setText(review);
+
+        //food list
+        class InsertRunnable implements Runnable {
+            @Override
+            public void run() {
+                try {
+                    foodList = FoodDB.getInstance(mContext).foodDao().loadAllByDietConnect(String.format("%d.%d.%d.-%s",year, month, day, detailtitle.getText().toString()));
+                    foodAdapter = new FoodAdapter(foodList);
+                    foodAdapter.notifyDataSetChanged();
+
+                    fRecyclerView.setAdapter(foodAdapter);
+                    LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
+                    fRecyclerView.setLayoutManager(mLinearLayoutManager);
+                }
+                catch (Exception e) {
+
+                }
+            }
+        }
+        InsertRunnable insertRunnable = new InsertRunnable();
+        Thread t = new Thread(insertRunnable);
+        t.start();
 
         class DeleteRunnable implements Runnable{
             @Override

@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
-import com.course.mydiet.db.DietDB;
+import com.course.mydiet.dietdb.DietDB;
 
 public class MainActivity extends AppCompatActivity {
     //데이터베이스

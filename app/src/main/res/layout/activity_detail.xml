@@ -11,8 +11,8 @@
         android:layout_height="43dp"
         android:layout_weight="1"
         android:ems="10"
-        android:text="한줄 소감"
         android:gravity="center"
+        android:text="한줄 소감"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.882"
@@ -48,40 +48,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/food_list2"
-        android:layout_width="74dp"
-        android:layout_height="150dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toEndOf="@+id/food_list"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.555" />
-
-    <TextView
-        android:id="@+id/food"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="284dp"
-        android:text="음식/수량"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
-    <ListView
-        android:id="@+id/food_list"
-        android:layout_width="277dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="40dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.555" />
-
 
     <TextView
         android:id="@+id/review2"
@@ -108,18 +74,20 @@
 
     <ImageView
         android:id="@+id/foodimage"
-        android:layout_width="412dp"
-        android:layout_height="170dp"
+        android:layout_width="413dp"
+        android:layout_height="0dp"
         android:layout_marginStart="54dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="71dp"
         android:layout_marginEnd="54dp"
+        android:layout_marginBottom="50dp"
         android:gravity="center"
         android:text="사진"
         android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/fRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.23"
         app:srcCompat="@drawable/ic_launcher_foreground"
         tools:ignore="MissingConstraints" />
 
@@ -142,5 +110,17 @@
         android:text="삭제?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fRecyclerView"
+        android:layout_width="281dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="276dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodimage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

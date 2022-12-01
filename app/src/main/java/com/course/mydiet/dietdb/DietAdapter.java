@@ -1,4 +1,4 @@
-package com.course.mydiet.db;
+package com.course.mydiet.dietdb;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,21 +9,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.course.mydiet.DetailActivity;
-import com.course.mydiet.DietActivity;
-import com.course.mydiet.MainActivity;
 import com.course.mydiet.R;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
 
     private List<Diet> dietList;
+
 
     public DietAdapter(List<Diet> list) {
         dietList = list;
@@ -44,9 +40,11 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Diet item = dietList.get(position);
+
         holder.title.setText(item.title);
         holder.time.setText(item.time);
         holder.review.setText(item.review);
+
 
         holder.card_view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +74,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
 
         ViewHolder(View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.itemTitle);
+            title = itemView.findViewById(R.id.itemFood);
             time = itemView.findViewById(R.id.itemTime);
             review = itemView.findViewById(R.id.itemReview);
             card_view = itemView.findViewById(R.id.linearlayout);

@@ -18,18 +18,18 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="115dp"
-            android:layout_height="115dp"
+            android:layout_width="142dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/ic_launcher_foreground" />
 
         <LinearLayout
-            android:layout_width="265dp"
+            android:layout_width="261dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/itemTitle"
+                android:id="@+id/itemFood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -52,17 +52,6 @@
                 tools:text="시간" />
 
             <TextView
-                android:id="@+id/itemmap"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                tools:text="위치" />
-
-            <TextView
                 android:id="@+id/itemReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +61,19 @@
                 android:textSize="14sp"
                 android:textStyle="normal"
                 tools:text="한 줄 소감" />
+
+            <TextView
+                android:id="@+id/itemmap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:text="100kcal"/>
         </LinearLayout>
+
         <!--
         <TextView
             android:id="@+id/itemPlayTime"

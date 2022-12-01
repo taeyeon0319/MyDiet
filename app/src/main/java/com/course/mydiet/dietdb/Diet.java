@@ -1,4 +1,4 @@
-package com.course.mydiet.db;
+package com.course.mydiet.dietdb;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
