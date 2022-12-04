@@ -5,7 +5,10 @@ import static android.app.PendingIntent.getActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,12 +16,16 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+import java.io.InputStream;
 import com.course.mydiet.dietdb.Diet;
 import com.course.mydiet.dietdb.DietDB;
 import com.course.mydiet.fooddb.Food;
@@ -42,6 +49,14 @@ public class WriteActivity extends AppCompatActivity {
 
     public String f, n;
     public String t;
+    public ImageView image1;
+    public Uri selectedImage;
+    public TextView text1;
+    public Button bt1,upload1;
+    public Intent data;
+    private static final int REQUEST_CODE = 0;
+
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -51,13 +66,15 @@ public class WriteActivity extends AppCompatActivity {
 
         back = findViewById(R.id.back);
         write = findViewById(R.id.write);
-        time_picker = findViewById(R.id.foodimage);
+        time_picker = findViewById(R.id.timePicker);
         diettitle = findViewById(R.id.diet_title);
         foodadd = findViewById(R.id.foodadd);
         foodadd2 = findViewById(R.id.foodadd2);
         foodlist = findViewById(R.id.food_list);
         foodlist2 = findViewById(R.id.food_list2);
         addbutton = findViewById(R.id.addbutton);
+        image1 = findViewById(R.id.foodimage);
+        upload1 = findViewById(R.id.upload);
         dietreview = findViewById(R.id.dietreview);
 
         //DB 생성
@@ -127,6 +144,18 @@ public class WriteActivity extends AppCompatActivity {
             }
         });
 
+        //작성 버튼 ==> 새로운 내용 추가
+        upload1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(getApplicationContext(), PhotoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
 
         //음식 리스트
         final ArrayList<String> arrayList = new ArrayList<String>();
@@ -177,7 +206,55 @@ public class WriteActivity extends AppCompatActivity {
                 add2Thread.start();
             }
         });
+
+
+        ImageView imageView = findViewById(R.id.foodimage);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent();
+                intent.setType("image/");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent,REQUEST_CODE);
+
+
+            }
+        });
+
     }
+
+
+    @Override
+    protected void onActivityResult (int requestCode,int resultCode,Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if( requestCode == REQUEST_CODE)
+        {
+            if(resultCode == RESULT_OK)
+            {
+                try{
+                    InputStream in = getContentResolver().openInputStream(data.getData());
+
+                    Bitmap img = BitmapFactory.decodeStream(in);
+                    in.close();
+
+                    image1.setImageBitmap(img);
+                } catch (IOException e) {
+
+                }
+
+            }
+
+            else if(resultCode==RESULT_CANCELED){
+                Toast.makeText(this,"사진 선택 취소",Toast.LENGTH_LONG).show();
+            }
+        }
+
+    }
+
+
 
     // 키보드 내리기
     @Override
@@ -197,6 +274,9 @@ public class WriteActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
     }
 }
+
+
+
 
 
 
