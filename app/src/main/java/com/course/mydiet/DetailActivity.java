@@ -24,17 +24,21 @@ import java.util.List;
 public class DetailActivity extends AppCompatActivity {
     public Button back;
     public Button remove;
-    public String date, title, time, review;
-    public TextView detailtitle, detailtime, detailreview;
+    public String date;
+    public String title;
+    public String time;
+    public String review;
+    public TextView detailtitle, detailtime, detailreview, calorie2;
     private Context dContext;
+    private FoodDB foodDB = null;
+    private Context fContext;
 
     private List<Food> foodList;
-    private FoodDB foodDB = null;
     private Context mContext = null;
     private FoodAdapter foodAdapter;
     private RecyclerView fRecyclerView;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +49,16 @@ public class DetailActivity extends AppCompatActivity {
         detailtitle = findViewById(R.id.diet_title);
         detailtime = findViewById(R.id.time2);
         detailreview = findViewById(R.id.dietreview);
+        calorie2 = findViewById(R.id.calorie2);
 
         dContext = getApplicationContext();
 
         fRecyclerView = (RecyclerView) findViewById(R.id.fRecyclerView);
         mContext = getApplicationContext();
         foodAdapter = new FoodAdapter(foodList);
+
+        foodDB = FoodDB.getInstance(this);
+        fContext = getApplicationContext();
 
         Intent detailActivity = getIntent();
 
@@ -67,6 +75,19 @@ public class DetailActivity extends AppCompatActivity {
         detailtitle.setText(title);
         detailtime.setText(time);
         detailreview.setText(review);
+        calorie2.setText("300");
+
+        class InsertTotalKcalRunnable implements Runnable {
+            @Override
+            public void run() {
+                Food food = new Food();
+                double ff = FoodDB.getInstance(fContext).foodDao().loadKcalByDate(String.format("%d.%d.%d.-%s",year, month, day, detailtitle.getText().toString()));
+                calorie2.setText(String.valueOf(ff)+"kcal");
+            }
+        }
+        InsertTotalKcalRunnable inserttotalkcalRunnable = new InsertTotalKcalRunnable();
+        Thread addThread = new Thread(inserttotalkcalRunnable);
+        addThread.start();
 
         //food list
         class InsertRunnable implements Runnable {

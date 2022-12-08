@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase;
 
 import com.course.mydiet.dietdb.DietDao;
 import com.course.mydiet.fooddb.*;
+import com.course.mydiet.kcaldb.KcalDao;
 
 @Database(entities = {Food.class}, version = 1)
 public abstract class FoodDB extends RoomDatabase {

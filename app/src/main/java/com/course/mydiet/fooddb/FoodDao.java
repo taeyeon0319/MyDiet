@@ -23,4 +23,10 @@ public interface FoodDao {
 
     @Delete
     void delete(Food food);
+
+    @Query("SELECT SUM(kcal) FROM Food WHERE connectdiet LIKE '%' || :date || '%'")
+    double loadKcalByDate(String date);
+
+    @Query("SELECT SUM(kcal) FROM Food WHERE connectdiet=:datetitle")
+    double loadKcalByDateTitle(String datetitle);
 }

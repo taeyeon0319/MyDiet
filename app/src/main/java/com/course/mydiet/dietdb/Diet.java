@@ -22,8 +22,8 @@ public class Diet {
     @ColumnInfo(name="image")
     public (이미지는 bitmap을 byte로 변환해서 해야함 - 구글링)
 
-    @ColumnInfo(name="food")
-    foreign key로 음식 데이터 만들 예정
+    @ColumnInfo(name="map")
+    public String map;
     */
 
     @ColumnInfo(name="review")

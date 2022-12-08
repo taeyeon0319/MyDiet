@@ -59,18 +59,18 @@
         app:layout_constraintBottom_toBottomOf="@+id/back2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.163" />
+        app:layout_constraintVertical_bias="0.0" />
+
 
     <TextView
         android:id="@+id/time2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="244dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="188dp"
         android:text="시간"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <ImageView
         android:id="@+id/foodimage"
@@ -79,11 +79,11 @@
         android:layout_marginStart="54dp"
         android:layout_marginTop="71dp"
         android:layout_marginEnd="54dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="178dp"
         android:gravity="center"
         android:text="사진"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/fRecyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -113,14 +113,26 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fRecyclerView"
-        android:layout_width="281dp"
-        android:layout_height="0dp"
+        android:layout_width="284dp"
+        android:layout_height="142dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="276dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foodimage" />
+
+    <TextView
+        android:id="@+id/calorie2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="칼로리"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.849"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.631" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

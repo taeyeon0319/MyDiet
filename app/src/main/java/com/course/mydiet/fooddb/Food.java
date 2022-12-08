@@ -15,6 +15,9 @@ public class Food {
     @ColumnInfo(name="amount")
     public int amount;
 
+    @ColumnInfo(name="kcal")
+    public double kcal;
+
     @ColumnInfo(name="connectdiet")
     public String connectdiet;
 

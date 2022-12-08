@@ -30,12 +30,15 @@ import com.course.mydiet.dietdb.Diet;
 import com.course.mydiet.dietdb.DietDB;
 import com.course.mydiet.fooddb.Food;
 import com.course.mydiet.fooddb.FoodDB;
+import com.course.mydiet.kcaldb.Kcal;
+import com.course.mydiet.kcaldb.KcalDB;
 
 import java.util.ArrayList;
 
 public class WriteActivity extends AppCompatActivity {
     private DietDB dietDB = null;
     private FoodDB foodDB = null;
+    private KcalDB kcalDB = null;
     private Context dContext;
 
     public Button back, write, addbutton;
@@ -185,7 +188,7 @@ public class WriteActivity extends AppCompatActivity {
                     arrayAdapter2.notifyDataSetChanged();
                     foodadd2.setText(null);
                 }
-
+                Kcal kcal2 = new Kcal();
                 class InsertFoodRunnable implements Runnable{
                     @Override
                     public void run(){
@@ -196,6 +199,8 @@ public class WriteActivity extends AppCompatActivity {
                         } catch (NumberFormatException e){
                         } catch (Exception e){
                         }
+                        double t = KcalDB.getInstance(dContext).kcalDao().loadKcalByFood(f);
+                        food.kcal = t*Integer.parseInt(n);
 
                         food.connectdiet = String.format("%d.%d.%d.-%s",year, month, day, diettitle.getText().toString());
                         FoodDB.getInstance(dContext).foodDao().insertAll(food);
@@ -274,11 +279,5 @@ public class WriteActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
     }
 }
-
-
-
-
-
-
 
 

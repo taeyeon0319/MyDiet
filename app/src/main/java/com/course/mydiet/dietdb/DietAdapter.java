@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.course.mydiet.DetailActivity;
 import com.course.mydiet.R;
+import com.course.mydiet.fooddb.FoodDB;
 
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
 
         View view = inflater.inflate(R.layout.item_diet, parent, false);
         DietAdapter.ViewHolder vh = new DietAdapter.ViewHolder(view);
+
 
         return vh;
     }
@@ -71,6 +73,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
         TextView title;
         TextView time;
         TextView review;
+
 
         ViewHolder(View itemView) {
             super(itemView);
