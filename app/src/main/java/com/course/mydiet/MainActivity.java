@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     public TextView yymmdd,calendartitle, calorie;
     public Button add_btn, detail_btn;
 
+    public View purple;
+
     private KcalDB kcalDB = null;
     private Context kContext;
     @Override
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         add_btn = findViewById(R.id.addbutton);
         detail_btn = findViewById(R.id.detailbutton);
         calorie = findViewById(R.id.calorie);
+        purple = findViewById(R.id.view);
 
         //DB 생성
         dietDB = DietDB.getInstance(this);
@@ -122,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 add_btn.setVisibility(View.VISIBLE);
                 detail_btn.setVisibility(View.VISIBLE);
-
+                purple.setVisibility(View.VISIBLE);
                 add_btn.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view){

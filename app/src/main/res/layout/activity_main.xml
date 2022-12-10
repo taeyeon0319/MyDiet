@@ -9,6 +9,17 @@
     android:orientation="vertical">
 
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="296dp"
+        android:layout_height="5dp"
+        android:background="#e2cce7"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yymmdd" />
+
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="409dp"
@@ -91,9 +102,12 @@
         android:layout_marginBottom="93dp"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#9E28B3"
+        android:textSize="50dp"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
