@@ -44,7 +44,7 @@ public class WriteActivity extends AppCompatActivity {
     public Button back, write, addbutton;
     public TimePicker time_picker;
     public TextView time;
-    public EditText diettitle, foodadd, foodadd2, dietreview;
+    public EditText diettitle, foodadd, foodadd2, dietreview, place;
     public ListView foodlist, foodlist2;
 
     public int year, month, day;
@@ -79,6 +79,7 @@ public class WriteActivity extends AppCompatActivity {
         image1 = findViewById(R.id.foodimage);
         upload1 = findViewById(R.id.upload);
         dietreview = findViewById(R.id.dietreview);
+        place = findViewById(R.id.placename);
 
         //DB 생성
         dietDB = DietDB.getInstance(this);
@@ -116,6 +117,7 @@ public class WriteActivity extends AppCompatActivity {
                 diet.title = diettitle.getText().toString();
                 diet.time = timeread;
                 diet.review = dietreview.getText().toString();
+                diet.place = place.getText().toString();
                 DietDB.getInstance(dContext).dietDao().insertAll(diet);
             }
         }
@@ -147,11 +149,11 @@ public class WriteActivity extends AppCompatActivity {
             }
         });
 
-        //작성 버튼 ==> 새로운 내용 추가
+        //지도버튼
         upload1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(getApplicationContext(), PhotoActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
                 startActivity(intent);
             }
         });

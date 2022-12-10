@@ -21,10 +21,11 @@ public class Diet {
     /*
     @ColumnInfo(name="image")
     public (이미지는 bitmap을 byte로 변환해서 해야함 - 구글링)
-
-    @ColumnInfo(name="map")
-    public String map;
     */
+
+    @ColumnInfo(name="place")
+    public String place;
+
 
     @ColumnInfo(name="review")
     public String review;

@@ -15,6 +15,8 @@ import com.course.mydiet.DetailActivity;
 import com.course.mydiet.R;
 import com.course.mydiet.fooddb.FoodDB;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
@@ -46,6 +48,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
         holder.title.setText(item.title);
         holder.time.setText(item.time);
         holder.review.setText(item.review);
+        holder.place.setText(item.place);
 
 
         holder.card_view.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +61,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
                 detailActivity.putExtra("title", dietList.get(mPostion).title);
                 detailActivity.putExtra("time", dietList.get(mPostion).time);
                 detailActivity.putExtra("review", dietList.get(mPostion).review);
+                detailActivity.putExtra("place", dietList.get(mPostion).place);
                 (context).startActivity(detailActivity);
             }
         });
@@ -73,6 +77,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
         TextView title;
         TextView time;
         TextView review;
+        TextView place;
 
 
         ViewHolder(View itemView) {
@@ -81,6 +86,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
             time = itemView.findViewById(R.id.itemTime);
             review = itemView.findViewById(R.id.itemReview);
             card_view = itemView.findViewById(R.id.linearlayout);
+            place = itemView.findViewById(R.id.itemPlace);
         }
     }
 }

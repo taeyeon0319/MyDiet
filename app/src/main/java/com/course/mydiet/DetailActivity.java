@@ -27,7 +27,8 @@ public class DetailActivity extends AppCompatActivity {
     public String title;
     public String time;
     public String review;
-    public TextView detailtitle, detailtime, detailreview, calorie2;
+    public String place;
+    public TextView detailtitle, detailtime, detailreview, calorie2, detailplace;
     private Context dContext;
     private FoodDB foodDB = null;
     private Context fContext;
@@ -48,6 +49,7 @@ public class DetailActivity extends AppCompatActivity {
         detailtime = findViewById(R.id.time2);
         detailreview = findViewById(R.id.dietreview);
         calorie2 = findViewById(R.id.calorie2);
+        detailplace=findViewById(R.id.place2);
 
         dContext = getApplicationContext();
 
@@ -65,6 +67,7 @@ public class DetailActivity extends AppCompatActivity {
             title = detailActivity.getStringExtra("title");
             time= detailActivity.getStringExtra("time");
             review= detailActivity.getStringExtra("review");
+            place = detailActivity.getStringExtra("place");
         }
 
         int year = Integer.parseInt((date.split("\\.")[0]));
@@ -72,8 +75,9 @@ public class DetailActivity extends AppCompatActivity {
         int day = Integer.parseInt((date.split("\\.")[2]));
         detailtitle.setText(title);
         detailtime.setText(time);
-        detailreview.setText(review);
+        detailreview.setText("\""+review+"\"");
         calorie2.setText("300");
+        detailplace.setText(place);
 
         class InsertTotalKcalRunnable implements Runnable {
             @Override

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <TextView
         android:id="@+id/dietreview"
         android:layout_width="275dp"
@@ -13,25 +14,15 @@
         android:ems="10"
         android:gravity="center"
         android:text="한줄 소감"
-        android:textColor="@color/black"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#5F5F5F"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.882"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.886" />
-
-    <TextView
-        android:id="@+id/review"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:text="한줄 소감"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.875" />
-
+        app:layout_constraintVertical_bias="0.839" />
 
     <TextView
         android:id="@+id/diet_title"
@@ -51,43 +42,41 @@
 
 
     <TextView
-        android:id="@+id/review2"
+        android:id="@+id/place2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="476dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginEnd="48dp"
         android:text="식사장소"
-        app:layout_constraintBottom_toBottomOf="@+id/back2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/time2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="216dp"
         android:text="시간"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/foodimage"
-        android:layout_width="413dp"
-        android:layout_height="0dp"
+        android:layout_width="342dp"
+        android:layout_height="142dp"
         android:layout_marginStart="54dp"
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="54dp"
-        android:layout_marginBottom="178dp"
         android:gravity="center"
         android:text="사진"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.358"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23"
         app:srcCompat="@drawable/ic_launcher_foreground"
         tools:ignore="MissingConstraints" />
 
@@ -103,15 +92,26 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fRecyclerView"
-        android:layout_width="290dp"
-        android:layout_height="142dp"
+        android:layout_width="286dp"
+        android:layout_height="218dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="252dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodimage" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="296dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="12dp"
+        android:background="#BB86FC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fRecyclerView" />
 
     <TextView
         android:id="@+id/calorie2"
@@ -121,17 +121,19 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.825"
+        app:layout_constraintHorizontal_bias="0.834"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fRecyclerView"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.103" />
 
     <View
+        android:id="@+id/view3"
         android:layout_width="296dp"
         android:layout_height="5dp"
         android:background="#BB86FC"
+        app:layout_constraintBottom_toTopOf="@+id/fRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fRecyclerView" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
