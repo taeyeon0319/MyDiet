@@ -23,7 +23,6 @@ import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     public Button back;
-    public Button remove;
     public String date;
     public String title;
     public String time;
@@ -45,7 +44,6 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         back = findViewById(R.id.back2);
-        remove = findViewById(R.id.remove);
         detailtitle = findViewById(R.id.diet_title);
         detailtime = findViewById(R.id.time2);
         detailreview = findViewById(R.id.dietreview);
@@ -127,15 +125,6 @@ public class DetailActivity extends AppCompatActivity {
                 intent.putExtra("year", year);
                 intent.putExtra("month", month);
                 intent.putExtra("day", day);
-                startActivity(intent);
-            }
-        });
-
-        //삭제 버튼
-        remove.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
