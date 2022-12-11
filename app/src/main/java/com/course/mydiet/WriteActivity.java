@@ -43,7 +43,7 @@ public class WriteActivity extends AppCompatActivity {
 
     public Button back, write, addbutton;
     public TimePicker time_picker;
-    public TextView time;
+    public TextView image;
     public EditText diettitle, foodadd, foodadd2, dietreview, place;
     public ListView foodlist, foodlist2;
 
@@ -55,9 +55,11 @@ public class WriteActivity extends AppCompatActivity {
     public ImageView image1;
     public Uri selectedImage;
     public TextView text1;
-    public Button bt1,upload1;
+    public Button bt1,upload1, upload2;
     public Intent data;
     private static final int REQUEST_CODE = 0;
+
+    public Uri uri;
 
 
 
@@ -80,6 +82,18 @@ public class WriteActivity extends AppCompatActivity {
         upload1 = findViewById(R.id.upload);
         dietreview = findViewById(R.id.dietreview);
         place = findViewById(R.id.placename);
+        image = findViewById(R.id.pic);
+        upload2 = findViewById(R.id.upload2);
+
+        //사진 업로드
+        upload2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, 1);
+            }
+        });
 
         //DB 생성
         dietDB = DietDB.getInstance(this);
@@ -118,6 +132,7 @@ public class WriteActivity extends AppCompatActivity {
                 diet.time = timeread;
                 diet.review = dietreview.getText().toString();
                 diet.place = place.getText().toString();
+                diet.image = image.getText().toString();
                 DietDB.getInstance(dContext).dietDao().insertAll(diet);
             }
         }
@@ -213,53 +228,25 @@ public class WriteActivity extends AppCompatActivity {
                 add2Thread.start();
             }
         });
-
-
-        ImageView imageView = findViewById(R.id.foodimage);
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent();
-                intent.setType("image/");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent,REQUEST_CODE);
-
-
-            }
-        });
-
     }
-
 
     @Override
-    protected void onActivityResult (int requestCode,int resultCode,Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if( requestCode == REQUEST_CODE)
-        {
-            if(resultCode == RESULT_OK)
-            {
-                try{
-                    InputStream in = getContentResolver().openInputStream(data.getData());
-
-                    Bitmap img = BitmapFactory.decodeStream(in);
-                    in.close();
-
-                    image1.setImageBitmap(img);
-                } catch (IOException e) {
-
+        switch(requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    uri = data.getData();
                 }
-
-            }
-
-            else if(resultCode==RESULT_CANCELED){
-                Toast.makeText(this,"사진 선택 취소",Toast.LENGTH_LONG).show();
-            }
+                break;
         }
+        image.setText(String.valueOf(uri));
 
     }
+
+
+
 
 
 

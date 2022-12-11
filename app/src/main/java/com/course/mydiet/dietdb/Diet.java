@@ -18,10 +18,9 @@ public class Diet {
     @ColumnInfo(name="time")
     public String time;
 
-    /*
+
     @ColumnInfo(name="image")
-    public (이미지는 bitmap을 byte로 변환해서 해야함 - 구글링)
-    */
+    public String image;
 
     @ColumnInfo(name="place")
     public String place;

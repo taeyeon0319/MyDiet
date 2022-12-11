@@ -2,9 +2,11 @@ package com.course.mydiet.dietdb;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -49,6 +51,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
         holder.time.setText(item.time);
         holder.review.setText(item.review);
         holder.place.setText(item.place);
+        holder.image.setImageURI(Uri.parse(item.image));
 
 
         holder.card_view.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +65,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
                 detailActivity.putExtra("time", dietList.get(mPostion).time);
                 detailActivity.putExtra("review", dietList.get(mPostion).review);
                 detailActivity.putExtra("place", dietList.get(mPostion).place);
+                detailActivity.putExtra("image", dietList.get(mPostion).image);
                 (context).startActivity(detailActivity);
             }
         });
@@ -78,6 +82,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
         TextView time;
         TextView review;
         TextView place;
+        ImageView image;
 
 
         ViewHolder(View itemView) {
@@ -87,6 +92,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
             review = itemView.findViewById(R.id.itemReview);
             card_view = itemView.findViewById(R.id.linearlayout);
             place = itemView.findViewById(R.id.itemPlace);
+            image = itemView.findViewById(R.id.imageView);
         }
     }
 }

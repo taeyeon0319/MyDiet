@@ -3,9 +3,11 @@ package com.course.mydiet;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +30,8 @@ public class DetailActivity extends AppCompatActivity {
     public String time;
     public String review;
     public String place;
+    public String image;
+    public ImageView foodimage;
     public TextView detailtitle, detailtime, detailreview, calorie2, detailplace;
     private Context dContext;
     private FoodDB foodDB = null;
@@ -37,6 +41,7 @@ public class DetailActivity extends AppCompatActivity {
     private Context mContext = null;
     private FoodAdapter foodAdapter;
     private RecyclerView fRecyclerView;
+
 
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
@@ -50,6 +55,7 @@ public class DetailActivity extends AppCompatActivity {
         detailreview = findViewById(R.id.dietreview);
         calorie2 = findViewById(R.id.calorie2);
         detailplace=findViewById(R.id.place2);
+        foodimage = findViewById(R.id.foodimage);
 
         dContext = getApplicationContext();
 
@@ -68,6 +74,7 @@ public class DetailActivity extends AppCompatActivity {
             time= detailActivity.getStringExtra("time");
             review= detailActivity.getStringExtra("review");
             place = detailActivity.getStringExtra("place");
+            image = detailActivity.getStringExtra("image");
         }
 
         int year = Integer.parseInt((date.split("\\.")[0]));
@@ -78,6 +85,7 @@ public class DetailActivity extends AppCompatActivity {
         detailreview.setText("\""+review+"\"");
         calorie2.setText("300");
         detailplace.setText(place);
+        foodimage.setImageURI(Uri.parse(image));
 
         class InsertTotalKcalRunnable implements Runnable {
             @Override
