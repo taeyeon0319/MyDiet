@@ -171,11 +171,13 @@
         android:id="@+id/pic"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="444dp"
+        android:layout_marginStart="52dp"
         android:text="사진업로드"
+        android:maxLines="4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.763" />
 
     <TimePicker
         android:id="@+id/timePicker"

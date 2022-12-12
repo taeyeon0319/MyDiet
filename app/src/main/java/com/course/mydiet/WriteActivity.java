@@ -92,8 +92,10 @@ public class WriteActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.setType("image/*");
                 startActivityForResult(intent, 1);
+
             }
         });
+
 
         //DB 생성
         dietDB = DietDB.getInstance(this);
